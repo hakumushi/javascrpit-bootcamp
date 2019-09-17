@@ -37,23 +37,34 @@ const renderNotes = (notes, filters) =>{
     filteredNotes.forEach((note)=>{
         const noteEl = document.createElement('p')
         noteEl.textContent = note.title
+        noteEl.className = 'note'
         document.querySelector('#notes').appendChild(noteEl)
     })
 }
 
 renderNotes(notes, filters)
 
-document.querySelector('#create-note').addEventListener('click', (e) =>{
+document.querySelector('#create-note').addEventListener('click', () =>{
     console.log('Create')
 })
 
-document.querySelector('#remove-all').addEventListener('click', (e) =>{
+document.querySelector('#remove-all').addEventListener('click', () =>{
     document.querySelectorAll('.note').forEach((element)=>{
         element.remove()
     })
 })
 
-document.querySelector('#search-text').addEventListener('input', (e) => {
+document.querySelector('#search-text').addEventListener('input', e => {
     filters.searchText = e.target.value
     renderNotes(notes, filters)
+})
+
+document.querySelector("#name-form").addEventListener('submit', e => {
+    e.preventDefault()
+    console.log(e.target.elements.firstName.value)
+    e.target.elements.firstName.value = ''
+})
+
+document.querySelector('#filter-by').addEventListener('change', e => {
+    console.log(e.target.value)
 })
