@@ -9,21 +9,49 @@ const getSavedNotes = () => {
 }
 
 //  Save the notes to the localstorage
-const saveNotes = (notes) => {
+const saveNotes = notes => {
     localStorage.setItem('notes', JSON.stringify(notes))
+}
+
+// Remove a note from the list
+const removeNote = noteId => {
+    const noteIndex = notes.findIndex( note =>{
+        return note.id === noteId
+    })
+
+    if (noteIndex > -1){
+        notes.splice(noteIndex, 1)
+    }
 }
 
 // Generate the DOM structure for a note
 const generateNoteDOM = (note) => {
-    const noteEl = document.createElement('p')
+    const noteEl = document.createElement('div')
+    const textEl = document.createElement('a')
+    const removeButton = document.createElement('button')
 
+
+    // Setup the remove note button
+    removeButton.textContent = 'x'
+    noteEl.appendChild(removeButton)
+
+    removeButton.addEventListener( 'click', () => {
+        removeNote(note.id)
+        saveNotes(notes)
+        renderNotes(notes, filters)   
+    })
+
+    // Setup the note title text
     if (note.title.length > 0) {
-        noteEl.textContent = note.title
+        textEl.textContent = note.title
     } else {
-        noteEl.textContent = 'Unamed note'
+        textEl.textContent = 'Unamed note'
     }
 
-    noteEl.className = 'note'
+    textEl.className = 'note'
+    textEl.style.padding = '5px'
+    textEl.setAttribute('href', `/edit.html#${note.id}`)
+    noteEl.appendChild(textEl)
 
     return noteEl
 }

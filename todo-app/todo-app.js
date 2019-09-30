@@ -14,7 +14,11 @@ document.querySelector('#search-text').addEventListener('input', e =>{
 
  document.querySelector('#new-todo').addEventListener('submit', e => {
     e.preventDefault()
-    todos.push({text: e.target.elements.text.value, completed: e.target.elements.completed.checked})
+    todos.push({
+       id: uuidv4(),
+       text: e.target.elements.text.value, 
+       completed: e.target.elements.completed.checked
+      })
     saveTodos(todos)
     e.target.elements.text.value = ''
     e.target.elements.completed.checked = false
