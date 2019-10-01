@@ -26,3 +26,10 @@ document.querySelector('#search-text').addEventListener('input', e => {
 document.querySelector('#filter-by').addEventListener('change', e => {
     console.log(e.target.value)
 })
+
+window.addEventListener('storage', e => {
+    if (e.key === 'notes') {
+        notes = getSavedNotes()
+        renderNotes(notes, filters)
+    }
+})
