@@ -1,4 +1,5 @@
 const titleElement = document.querySelector('#note-title')
+const dateElement = document.querySelector('#last-edited')
 const bodyElement = document.querySelector('#note-body')
 const noteId = location.hash.substring(1)
 let notes = getSavedNotes()
@@ -12,11 +13,13 @@ if(note === undefined){
 
 titleElement.value = note.title
 bodyElement.value = note.text
+dateElement.textContent = generateLastEdited(note.updatedAt)
 
 document.querySelector('#edit-form').addEventListener('submit', e => {
     e.preventDefault()
     note.title = titleElement.value
     note.text = bodyElement.value 
+    note.updatedAt = moment().valueOf()
 
     saveNotes(notes)
     location.assign('/index.html')
@@ -41,5 +44,6 @@ window.addEventListener('storage', e => {
 
         titleElement.value = note.title
         bodyElement.value = note.text
+        dateElement.textContent = generateLastEdited(note.updatedAt)
     }
 })
