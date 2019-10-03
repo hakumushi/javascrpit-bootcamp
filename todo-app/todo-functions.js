@@ -1,11 +1,6 @@
 const getSavedTodos = () => {
     const todosJson = localStorage.getItem('todos')
-
-    let todos = []
-    if (todosJson != null) {
-        todos = JSON.parse(todosJson)
-    }
-    return todos
+    return todosJson != null ? JSON.parse(todosJson) : []
 }
 
 const saveTodos = (todos) => {
@@ -19,9 +14,7 @@ const generateSummaryDOM = incompleteTodos => {
 }
 
 const removeTodo = todoId => {
-    const todoIndex = todos.findIndex(todo => {
-        return todo.id === todoId
-    })
+    const todoIndex = todos.findIndex(todo => todo.id === todoId)
 
     if(todoIndex > -1){
         todos.splice(todoIndex, 1)
@@ -29,9 +22,8 @@ const removeTodo = todoId => {
 }
 
 const toggleTodo = (todoId) => {
-    const todo = todos.find(todo => {
-        return todo.id === todoId
-    })
+    const todo = todos.find(todo => todo.id === todoId)
+
     if(todo !== undefined){
         todo.completed = !todo.completed
     }
@@ -72,9 +64,7 @@ const renderTodos = (todos, filters) => {
         return searchTextMatch && hideCmpletedMatch
     })
 
-    const incompleteTodos = filteredTodos.filter((todo)=>{
-        return !todo.completed
-    })
+    const incompleteTodos = filteredTodos.filter((todo)=> !todo.completed)
 
     document.querySelector('#todos').innerHTML = ''
 
