@@ -1,6 +1,6 @@
 const getSavedTodos = () => {
     const todosJson = localStorage.getItem('todos')
-    return todosJson != null ? JSON.parse(todosJson) : []
+    return todosJson ? JSON.parse(todosJson) : []
 }
 
 const saveTodos = (todos) => {
@@ -24,7 +24,7 @@ const removeTodo = todoId => {
 const toggleTodo = (todoId) => {
     const todo = todos.find(todo => todo.id === todoId)
 
-    if(todo !== undefined){
+    if(todo){
         todo.completed = !todo.completed
     }
 }

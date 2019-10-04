@@ -21,6 +21,6 @@ const showErrorPage = () => "Showing the error page"
 let newMessage = myAge >= 21 ? showPage() : showErrorPage()
 console.log(newMessage)
 
-const team = ['Tyler', 'Porter']
+const team = ['Tyler', 'Porter', "Paulo", "Andrew", "Daniel"]
 
 console.log(team.length <= 4 ? `Team size: ${team.length}` : "Too many people on your team")
