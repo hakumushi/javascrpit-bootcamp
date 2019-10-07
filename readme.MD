@@ -6,4 +6,4 @@ The challenges of the The Modern JavaScript Bootcamp (2019)
 
 Run live-server + folder name
 
-### Section 8
+### Section 9
